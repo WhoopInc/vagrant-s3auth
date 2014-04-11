@@ -1,0 +1,20 @@
+AlignParameters:
+  Enabled: false
+
+AssignmentInCondition:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+LineLength:
+  Max: 100
+
+MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 20
+
+SignalException:
+  EnforcedStyle: only_raise
+  SupportedStyles:
+    - only_raise

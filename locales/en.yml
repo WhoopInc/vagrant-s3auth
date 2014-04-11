@@ -1,0 +1,10 @@
+en:
+  vagrant_s3auth:
+    errors:
+      missing_credentials: |-
+        Unable to read AWS credentials from the environment.
+
+        Ensure the following variables are set in your environment, or set
+        them at the top of your Vagrantfile:
+
+            %{missing_variables}
