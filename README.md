@@ -171,7 +171,14 @@ install a plugin is lame.
 But wait! Just stick some shell in your Vagrantfile:
 
 ```ruby
-%x(vagrant plugin install vagrant-s3auth) unless Vagrant.has_plugin?('vagrant-s3auth')
+unless Vagrant.has_plugin?('vagrant-s3auth')
+  # Attempt to install ourself. Bail out on failure so we don't get stuck in an
+  # infinite loop.
+  system('vagrant plugin install vagrant-s3auth') || exit!
+
+  # Relaunch Vagrant so the plugin is detected. Exit with the same status code.
+  exit system('vagrant', *ARGV)
+end
 ```
 
 
