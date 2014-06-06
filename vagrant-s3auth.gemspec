@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['benesch@whoop.com']
   spec.summary       = 'Private, versioned Vagrant boxes hosted on Amazon S3.'
   spec.homepage      = 'https://github.com/WhoopInc/vagrant-s3auth'
-  spec.license       = 'All rights reserved'
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.test_files    = spec.files.grep(/spec/)
