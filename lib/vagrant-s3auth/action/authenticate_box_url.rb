@@ -76,7 +76,7 @@ module VagrantPlugins
         end
 
         def s3_url?(url)
-          url.host == S3_HOST
+          url.host =~ S3_HOST_MATCHER
         end
 
         def box_url?(url)
