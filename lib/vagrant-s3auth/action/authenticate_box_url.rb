@@ -8,7 +8,7 @@ module VagrantPlugins
   module S3Auth
     module Action
       class AuthenticateBoxUrl
-        def initialize(app, env)
+        def initialize(app, _env)
           @app    = app
           @logger = Log4r::Logger.new('vagrant_s3auth::action::authenticate_box_url')
           @access_key = ENV['AWS_ACCESS_KEY_ID']
@@ -67,10 +67,12 @@ module VagrantPlugins
           missing_variables << 'AWS_ACCESS_KEY_ID' unless @access_key
           missing_variables << 'AWS_SECRET_ACCESS_KEY' unless @secret_key
 
+          # rubocop:disable Style/GuardClause
           unless missing_variables.empty?
             raise Errors::MissingCredentialsError,
               missing_variables: missing_variables.join(', ')
           end
+          # rubocop:enable Style/GuardClause
         end
 
         def s3_url?(url)
