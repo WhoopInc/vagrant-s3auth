@@ -1,20 +1,21 @@
-AlignParameters:
+Lint/AssignmentInCondition:
   Enabled: false
 
-AssignmentInCondition:
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/Documentation:
   Enabled: false
 
-Documentation:
+Style/FileName:
   Enabled: false
 
-LineLength:
+Style/LineLength:
   Max: 100
 
-MethodLength:
+Style/MethodLength:
   CountComments: false  # count full line comments?
   Max: 20
 
-SignalException:
+Style/SignalException:
   EnforcedStyle: only_raise
-  SupportedStyles:
-    - only_raise
