@@ -5,5 +5,7 @@ group :plugins do
 end
 
 group :development do
+  gem 'rake', '~> 10.3.2'
+  gem 'rubocop', '~> 0.23.0'
   gem 'vagrant', git: 'git://github.com/mitchellh/vagrant.git'
 end
