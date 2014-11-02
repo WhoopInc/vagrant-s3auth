@@ -56,8 +56,8 @@ following at the top of your Vagrantfile:
 
 ```ruby
 creds = File.read(File.expand_path('~/.company-aws-creds')).lines
-ENV['AWS_ACCESS_KEY_ID']     = creds[0]
-ENV['AWS_SECRET_ACCESS_KEY'] = creds[1]
+ENV['AWS_ACCESS_KEY_ID']     = creds[0].split
+ENV['AWS_SECRET_ACCESS_KEY'] = creds[1].split
 ```
 
 
@@ -76,6 +76,12 @@ Note that your URL must be of the form
 
 ```
 https://s3.amazonaws.com/bucket/resource
+```
+
+For buckets outside "US Standard", use the region-specific s3 endpoints made available by AWS:
+
+```
+https://s3-us-west-1.amazonaws.com/bucket/resource # use region-specific s3 endpoints
 ```
 
 Other valid forms of S3 URLs (`bucket.s3.amazonaws.com/resource.box`, etc.) will
