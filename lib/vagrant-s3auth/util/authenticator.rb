@@ -15,8 +15,8 @@ module VagrantPlugins
         end
 
         def initialize
-          @access_key = ENV['AWS_ACCESS_KEY_ID']
-          @secret_key = ENV['AWS_SECRET_ACCESS_KEY']
+          @access_key = ENV['AWS_ACCESS_KEY']
+          @secret_key = ENV['AWS_SECRET_KEY']
 
           ensure_credentials
         end
@@ -37,8 +37,8 @@ module VagrantPlugins
 
         def ensure_credentials
           missing_variables = []
-          missing_variables << 'AWS_ACCESS_KEY_ID' unless @access_key
-          missing_variables << 'AWS_SECRET_ACCESS_KEY' unless @secret_key
+          missing_variables << 'AWS_ACCESS_KEY' unless @access_key
+          missing_variables << 'AWS_SECRET_KEY' unless @secret_key
 
           # rubocop:disable Style/GuardClause
           unless missing_variables.empty?
