@@ -7,4 +7,17 @@ en:
         Ensure the following variables are set in your environment, or set
         them at the top of your Vagrantfile:
 
-            %{missing_variables}
+            AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY
+
+      malformed_shorthand_url: |-
+        Malformed shorthand S3 box URL:
+
+            %{url}
+
+        Check your `box_url` setting.
+
+      s3_api_error: |-
+        Unable to communicate with Amazon S3 to download box. The S3 API reports:
+
+            %{error}

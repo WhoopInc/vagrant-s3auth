@@ -10,6 +10,14 @@ module VagrantPlugins
       class MissingCredentialsError < VagrantS3AuthError
         error_key(:missing_credentials)
       end
+
+      class MalformedShorthandURLError < VagrantS3AuthError
+        error_key(:malformed_shorthand_url)
+      end
+
+      class S3APIError < VagrantS3AuthError
+        error_key(:s3_api_error)
+      end
     end
   end
 end
