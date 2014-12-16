@@ -1,6 +1,22 @@
 Lint/AssignmentInCondition:
   Enabled: false
 
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
@@ -10,12 +26,8 @@ Style/Documentation:
 Style/FileName:
   Enabled: false
 
-Style/LineLength:
-  Max: 100
-
-Style/MethodLength:
-  CountComments: false  # count full line comments?
-  Max: 20
+Style/RescueModifier:
+  Enabled: false
 
 Style/SignalException:
   EnforcedStyle: only_raise

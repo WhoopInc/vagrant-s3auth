@@ -1,4 +1,5 @@
-*.gem
-.vagrant
+.DS_Store
+
 pkg
-Vagrantfile
+*.gem
+.env

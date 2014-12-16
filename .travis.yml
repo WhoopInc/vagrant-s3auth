@@ -1,0 +1,43 @@
+language: ruby
+rvm:
+- 2.1
+
+before_install:
+# Install Bats, the Bash testing framework
+- git clone https://github.com/sstephenson/bats.git
+- (cd bats; sudo ./install.sh /usr/local)
+
+# Vagrant from source doesn't ship with `bsdtar`
+- sudo apt-get install -qy bsdtar
+
+# Speed up Nokogiri installation substantially by using precompiled libxslt
+- sudo apt-get install -qy libxslt1.1
+- bundle config build.nokogiri --use-system-libraries
+
+# Older versions of Vagrant can't handle the current version of Bundler, which
+# ships with Travis.
+- rvm @default,@global do gem uninstall bundler --all --executables
+- gem install bundler -v '~> 1.5.2'
+- bundle --version
+
+# Allow dynamically changing the bundled Vagrant version via environment
+# variables.
+- rm Gemfile.lock
+
+before_script:
+- test/setup.rb
+
+after_script:
+- test/cleanup.rb
+
+env:
+  global:
+  - VAGRANT_S3AUTH_ATLAS_BOX_NAME="travis-$TRAVIS_JOB_NUMBER"
+  - VAGRANT_S3AUTH_BUCKET="travis-$TRAVIS_JOB_NUMBER.vagrant-s3auth.com"
+  - VAGRANT_S3AUTH_REGION_NONSTANDARD=eu-west-1
+  - VAGRANT_S3AUTH_BOX_BASE=minimal
+  matrix:
+  - VAGRANT_VERSION=master
+  - VAGRANT_VERSION=v1.7.1
+  - VAGRANT_VERSION=v1.6.5
+  - VAGRANT_VERSION=v1.5.0
