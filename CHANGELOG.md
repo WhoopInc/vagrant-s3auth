@@ -1,6 +1,6 @@
 ## 1.0.0
 
-**Unreleased**
+**16 December 2014**
 
 Enhancements:
 
