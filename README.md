@@ -1,7 +1,7 @@
 # vagrant-s3auth
 
 <a href="https://travis-ci.org/WhoopInc/vagrant-s3auth">
-  <img src="https://travis-ci.org/WhoopInc/vagrant-s3auth.svg?branch=1.0-cleanup"
+  <img src="https://travis-ci.org/WhoopInc/vagrant-s3auth.svg?branch=master"
     align="right">
 </a>
 
