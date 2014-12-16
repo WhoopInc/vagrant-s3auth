@@ -1,0 +1,13 @@
+{
+  "name": "vagrant-s3auth/minimal",
+  "description": "This box contains company secrets.",
+  "versions": [{
+    "version": "1.0.1",
+    "providers": [{
+      "name": "virtualbox",
+      "url": "%{box_url}",
+      "checksum_type": "sha1",
+      "checksum": "8ea536dd3092cf159f02405edd44ded5b62ba4e6"
+    }]
+  }]
+}

@@ -8,4 +8,8 @@ Bundler::GemHelper.install_tasks
 
 RuboCop::RakeTask.new(:lint)
 
-task default: %w(lint)
+task :test do
+  sh 'bats test/run.bats'
+end
+
+task default: %w(lint test)
