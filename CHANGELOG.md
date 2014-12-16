@@ -1,3 +1,16 @@
+## 1.0.0
+
+**Unreleased**
+
+Enhancements:
+
+* passes a complete acceptance test suite
+* detects full and shorthand S3 URLs at all download stages
+
+Fixes:
+
+* automatically determines region for shorthand S3 URLs ([#1], [#7])
+
 ## 0.1.0
 
 **13 June 2014**
@@ -23,3 +36,4 @@ Enhancements:
 * initial release
 
 [#1]: https://github.com/WhoopInc/vagrant-s3auth/issues/1
+[#7]: https://github.com/WhoopInc/vagrant-s3auth/issues/7
