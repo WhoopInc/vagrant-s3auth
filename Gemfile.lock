@@ -23,7 +23,7 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-s3auth (1.0.0.rc1)
+    vagrant-s3auth (1.0.0)
       aws-sdk (~> 1.59.1)
 
 GEM
