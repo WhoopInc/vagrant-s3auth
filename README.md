@@ -17,7 +17,7 @@ $ vagrant plugin install vagrant-s3auth
 
 ### Requirements
 
-* [Vagrant][vagrant], v1.5.0+
+* [Vagrant][vagrant], v1.5.1+
 
 ## Usage
 
