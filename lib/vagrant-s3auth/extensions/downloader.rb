@@ -7,14 +7,8 @@ module Vagrant
   module Util
     class Downloader
       def execute_curl_with_s3(options, subprocess_options, &data_proc)
-        begin
-          url = URI.parse(@source)
-        rescue URI::InvalidURIError
-          @logger.info("s3auth: Ignoring unparsable URL: #{url}")
-        end
-
-        if url && (s3_object = VagrantPlugins::S3Auth::Util.s3_object_for(url))
-          @logger.info("s3auth: Discovered S3 URL: #{url}")
+        if s3_object = VagrantPlugins::S3Auth::Util.s3_object_for(@source)
+          @logger.info("s3auth: Discovered S3 URL: #{@source}")
           @logger.debug("s3auth: Bucket: #{s3_object.bucket.name.inspect}")
           @logger.debug("s3auth: Key: #{s3_object.key.inspect}")
 
