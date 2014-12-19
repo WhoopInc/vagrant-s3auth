@@ -16,6 +16,9 @@ module Vagrant
 
           @logger.info("s3auth: Generating signed URL for #{method.upcase}")
 
+          # The URL sent to curl is always the last argument. We have to rely
+          # on this implementation detail because we need to hook into both
+          # HEAD and GET requests.
           options.pop
           options << VagrantPlugins::S3Auth::Util.s3_url_for(method, s3_object).to_s
         end
