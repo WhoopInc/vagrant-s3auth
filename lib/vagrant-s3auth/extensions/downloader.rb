@@ -3,6 +3,8 @@ require 'uri'
 require 'vagrant/util/downloader'
 require 'vagrant-s3auth/util'
 
+S3Auth = VagrantPlugins::S3Auth
+
 module Vagrant
   module Util
     class Downloader
@@ -12,7 +14,7 @@ module Vagrant
         # HEAD and GET requests.
         url = options.last
 
-        if s3_object = VagrantPlugins::S3Auth::Util.s3_object_for(url)
+        if s3_object = S3Auth::Util.s3_object_for(url)
           @logger.info("s3auth: Discovered S3 URL: #{@source}")
           @logger.debug("s3auth: Bucket: #{s3_object.bucket.name.inspect}")
           @logger.debug("s3auth: Key: #{s3_object.key.inspect}")
@@ -21,7 +23,7 @@ module Vagrant
 
           @logger.info("s3auth: Generating signed URL for #{method.upcase}")
 
-          url.replace(VagrantPlugins::S3Auth::Util.s3_url_for(method, s3_object).to_s)
+          url.replace(S3Auth::Util.s3_url_for(method, s3_object).to_s)
         end
 
         execute_curl_without_s3(options, subprocess_options, &data_proc)
