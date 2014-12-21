@@ -112,6 +112,5 @@ teardown() {
 @test "garbage full url" {
   run bundle exec vagrant box add --name "$VAGRANT_S3AUTH_BOX_BASE" https://smoogedydoop
   [[ "$status" -eq 1 ]]
-  echo "$output"
   [[ "$output" == *"error occurred while downloading the remote file"* ]]
 }
