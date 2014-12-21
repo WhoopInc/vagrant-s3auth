@@ -1,3 +1,11 @@
+## 1.0.1
+
+**18 December 2014**
+
+Enhancements:
+
+* support bucket-in-host style S3 URLs to simplify usage instructions
+
 ## 1.0.0
 
 **16 December 2014**
