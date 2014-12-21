@@ -5,7 +5,7 @@ rescue LoadError
 end
 
 require_relative 'errors'
-require_relative 'extensions'
+require_relative 'extension/downloader'
 
 module VagrantPlugins
   module S3Auth
