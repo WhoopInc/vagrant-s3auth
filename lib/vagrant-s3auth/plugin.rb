@@ -13,7 +13,7 @@ require_relative 'extensions'
 
 module VagrantPlugins
   module S3Auth
-    class Plugin < Vagrant.plugin(2)
+    class Plugin < Vagrant.plugin('2')
       name 's3auth'
 
       description <<-DESC
