@@ -1,10 +1,15 @@
 ## 1.0.1
 
-**18 December 2014**
+**21 December 2014**
 
 Enhancements:
 
 * support bucket-in-host style S3 URLs to simplify usage instructions
+
+Fixes:
+
+* internal cleanup
+* improved detection of incompatible Vagrant versions
 
 ## 1.0.0
 
