@@ -62,11 +62,16 @@ ENV['AWS_SECRET_ACCESS_KEY'] = creds[1].chomp
 
 #### S3 URLs
 
-Note that your URL must use the path style of specifying the bucket:
+You can use any valid HTTP(S) URL for your object:
 
-```
+```bash
+# path style
 http://s3.amazonaws.com/bucket/resource
 https://s3.amazonaws.com/bucket/resource
+
+# host style
+http://bucket.s3.amazonaws.com/resource
+https://bucket.s3.amazonaws.com/resource
 ```
 
 Or the S3 protocol shorthand
@@ -77,13 +82,6 @@ s3://bucket/resource
 
 which expands to the path-style HTTPS URL.
 
-Virtual host-style S3 URLs, where the bucket is specified in the hostname, are
-**not detected**!
-
-```
-https://bucket.s3-region.amazonaws.com/resource # ignored
-```
-
 ##### Non-standard regions
 
 If your bucket is not hosted in the US Standard region, you'll need to specify
@@ -91,6 +89,7 @@ the correct region endpoint as part of the URL:
 
 ```
 https://s3-us-west-2.amazonaws.com/bucket/resource
+https://bucket.s3-us-west-2.amazonaws.com/resource
 ```
 
 Or just use the S3 protocol shorthand, which will automatically determine the

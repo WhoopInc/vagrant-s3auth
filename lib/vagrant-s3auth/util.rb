@@ -6,7 +6,7 @@ require 'uri'
 module VagrantPlugins
   module S3Auth
     module Util
-      S3_HOST_MATCHER = /^s3([[:alnum:]\-\.]+)?\.amazonaws\.com$/
+      S3_HOST_MATCHER = /^((?<bucket>[[:alnum:]\-\.]+).)?s3([[:alnum:]\-\.]+)?\.amazonaws\.com$/
 
       LOCATION_TO_REGION = Hash.new { |_, key| key }.merge(
         nil => 'us-east-1',
@@ -20,9 +20,9 @@ module VagrantPlugins
           bucket = url.host
           key = url.path[1..-1]
           raise Errors::MalformedShorthandURLError, url: url unless bucket && key
-        elsif url.host =~ S3_HOST_MATCHER
+        elsif match = S3_HOST_MATCHER.match(url.host)
           components = url.path.split('/').delete_if(&:empty?)
-          bucket = components.shift
+          bucket = match['bucket'] || components.shift
           key = components.join('/')
         end
 

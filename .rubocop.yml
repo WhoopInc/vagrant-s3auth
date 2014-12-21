@@ -5,7 +5,7 @@ Metrics/AbcSize:
   Max: 30
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 12
 
 Metrics/LineLength:
   Max: 100
@@ -15,7 +15,7 @@ Metrics/MethodLength:
   Max: 20
 
 Metrics/PerceivedComplexity:
-  Max: 12
+  Max: 15
 
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
