@@ -2,7 +2,7 @@ Lint/AssignmentInCondition:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 30
+  Max: 40
 
 Metrics/CyclomaticComplexity:
   Max: 12
@@ -12,7 +12,7 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   CountComments: false
-  Max: 20
+  Max: 25
 
 Metrics/PerceivedComplexity:
   Max: 15

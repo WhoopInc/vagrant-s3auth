@@ -46,6 +46,10 @@ module VagrantPlugins
 
       def self.get_bucket_region(bucket)
         LOCATION_TO_REGION[AWS::S3.new.buckets[bucket].location_constraint]
+      rescue AWS::S3::Errors::AccessDenied
+        raise Errors::BucketLocationAccessDeniedError,
+          bucket: bucket,
+          access_key: ENV['AWS_ACCESS_KEY_ID']
       end
     end
   end

@@ -27,6 +27,14 @@ module Vagrant
         end
 
         execute_curl_without_s3(options, subprocess_options, &data_proc)
+      rescue Errors::DownloaderError => e
+        if e.message =~ /403 Forbidden/
+          e.message << "\n\n"
+          e.message << I18n.t('vagrant_s3auth.errors.box_download_forbidden',
+            access_key: ENV['AWS_ACCESS_KEY_ID'],
+            bucket: s3_object && s3_object.bucket.name)
+        end
+        raise
       rescue AWS::Errors::MissingCredentialsError
         raise VagrantPlugins::S3Auth::Errors::MissingCredentialsError
       rescue AWS::Errors::Base => e

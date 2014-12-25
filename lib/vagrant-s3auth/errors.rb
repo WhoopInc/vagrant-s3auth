@@ -15,6 +15,10 @@ module VagrantPlugins
         error_key(:malformed_shorthand_url)
       end
 
+      class BucketLocationAccessDeniedError < VagrantS3AuthError
+        error_key(:bucket_location_access_denied_error)
+      end
+
       class S3APIError < VagrantS3AuthError
         error_key(:s3_api_error)
       end

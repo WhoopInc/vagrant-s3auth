@@ -1,3 +1,12 @@
+## 1.0.2
+
+**Unreleased**
+
+Enhancements:
+
+* provide better error messages when S3 API requests are denied [#9]
+* include IAM policy recommendations in README
+
 ## 1.0.1
 
 **21 December 2014**
@@ -50,3 +59,4 @@ Enhancements:
 
 [#1]: https://github.com/WhoopInc/vagrant-s3auth/issues/1
 [#7]: https://github.com/WhoopInc/vagrant-s3auth/issues/7
+[#9]: https://github.com/WhoopInc/vagrant-s3auth/issues/9

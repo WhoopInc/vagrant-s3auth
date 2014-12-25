@@ -60,6 +60,34 @@ ENV['AWS_ACCESS_KEY_ID']     = creds[0].chomp
 ENV['AWS_SECRET_ACCESS_KEY'] = creds[1].chomp
 ```
 
+##### IAM configuration
+
+IAM accounts will need at least the following policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::BUCKET/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["s3:GetBucketLocation", "s3:ListBucket"],
+      "Resource": "arn:aws:s3:::BUCKET"
+    }
+  ]
+}
+```
+
+`s3:ListBucket` permission is not strictly necessary. vagrant-s3auth will never
+make a ListBucket request, but without ListBucket permission, a misspelled box
+name results in a 403 Forbidden error instead of a 404 Not Found error.
+
+See [AWS S3 Guide: User Policy Examples][aws-user-policy] for more.
+
 #### S3 URLs
 
 You can use any valid HTTP(S) URL for your object:
@@ -188,6 +216,7 @@ end
 
 
 [aws-signed]: http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html#ConstructingTheAuthenticationHeader
+[aws-user-policy]: http://docs.aws.amazon.com/AmazonS3/latest/dev/example-policies-s3.html
 [bucket-vhost]: http://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html#VirtualHostingExamples
 [metadata-boxes]: http://docs.vagrantup.com/v2/boxes/format.html
 [vagrant]: http://vagrantup.com

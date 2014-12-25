@@ -21,3 +21,28 @@ en:
         Unable to communicate with Amazon S3 to download box. The S3 API reports:
 
             %{error}
+
+      bucket_location_access_denied_error: |-
+        Request for box's Amazon S3 region was denied.
+
+        This usually indicates that your user account with access key ID
+
+            %{access_key}
+
+        is misconfigured. Ensure your IAM policy allows the "s3:GetBucketLocation"
+        action for your bucket:
+
+            arn:aws:s3:::%{bucket}
+
+      box_download_forbidden: |-
+        This box is hosted on Amazon S3. A 403 Forbidden error usually indicates
+        that your user account with access key ID
+
+            %{access_key}
+
+        is misconfigured. Ensure your IAM policy allows the "s3:GetObject"
+        action for your bucket:
+
+            arn:aws:s3:::%{bucket}/*
+
+        It may also indicate the box does not exist, so check your spelling.
