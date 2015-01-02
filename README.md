@@ -82,9 +82,11 @@ IAM accounts will need at least the following policy:
 }
 ```
 
-`s3:ListBucket` permission is not strictly necessary. vagrant-s3auth will never
+**IMPORTANT:** You must split up bucket and object permissions into separate policy statements as written above! See [Writing IAM Policies: How to grant access to an Amazon S3 Bucket][aws-s3-iam].
+
+Also note that `s3:ListBucket` permission is not strictly necessary. vagrant-s3auth will never
 make a ListBucket request, but without ListBucket permission, a misspelled box
-name results in a 403 Forbidden error instead of a 404 Not Found error.
+name results in a 403 Forbidden error instead of a 404 Not Found error. ([Why?][aws-403-404])
 
 See [AWS S3 Guide: User Policy Examples][aws-user-policy] for more.
 
@@ -214,7 +216,8 @@ unless Vagrant.has_plugin?('vagrant-s3auth')
 end
 ```
 
-
+[aws-403-404]: https://forums.aws.amazon.com/thread.jspa?threadID=56531#jive-message-210346
+[aws-s3-iam]: http://blogs.aws.amazon.com/security/post/Tx3VRSWZ6B3SHAV/Writing-IAM-Policies-How-to-grant-access-to-an-Amazon-S3-bucket
 [aws-signed]: http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html#ConstructingTheAuthenticationHeader
 [aws-user-policy]: http://docs.aws.amazon.com/AmazonS3/latest/dev/example-policies-s3.html
 [bucket-vhost]: http://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html#VirtualHostingExamples
