@@ -103,6 +103,12 @@ teardown() {
     "s3://$VAGRANT_S3AUTH_REGION_NONSTANDARD.$VAGRANT_S3AUTH_BUCKET/$VAGRANT_S3AUTH_BOX_BASE"
 }
 
+@test "simple box without GetBucketLocation permission" {
+  bundle exec vagrant box add \
+    --name "vagrant-s3auth/$VAGRANT_S3AUTH_BOX_BASE" \
+    http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+}
+
 @test "garbage shorthand url" {
   run bundle exec vagrant box add --name "$VAGRANT_S3AUTH_BOX_BASE" s3://smoogedydoop
   [[ "$status" -eq 1 ]]
