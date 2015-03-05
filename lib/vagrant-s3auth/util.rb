@@ -27,7 +27,7 @@ module VagrantPlugins
         end
 
         if bucket && key
-          AWS::S3.new(region: get_bucket_region(bucket))
+          ::AWS::S3.new(region: get_bucket_region(bucket))
             .buckets[bucket].objects[key]
         elsif follow_redirect
           response = Net::HTTP.get_response(url) rescue nil
@@ -45,8 +45,8 @@ module VagrantPlugins
       end
 
       def self.get_bucket_region(bucket)
-        LOCATION_TO_REGION[AWS::S3.new.buckets[bucket].location_constraint]
-      rescue AWS::S3::Errors::AccessDenied
+        LOCATION_TO_REGION[::AWS::S3.new.buckets[bucket].location_constraint]
+      rescue ::AWS::S3::Errors::AccessDenied
         raise Errors::BucketLocationAccessDeniedError,
           bucket: bucket,
           access_key: ENV['AWS_ACCESS_KEY_ID']
