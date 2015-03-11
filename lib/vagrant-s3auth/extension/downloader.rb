@@ -35,9 +35,9 @@ module Vagrant
             bucket: s3_object && s3_object.bucket.name)
         end
         raise
-      rescue AWS::Errors::MissingCredentialsError
+      rescue ::AWS::Errors::MissingCredentialsError
         raise VagrantPlugins::S3Auth::Errors::MissingCredentialsError
-      rescue AWS::Errors::Base => e
+      rescue ::AWS::Errors::Base => e
         raise VagrantPlugins::S3Auth::Errors::S3APIError, error: e
       end
 
