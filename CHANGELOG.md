@@ -1,3 +1,14 @@
+## 1.0.3
+
+**10 March 2015**
+
+Fixes:
+
+* fix namespace collisions with [vagrant-aws][vagrant-aws] [#11]
+
+Thanks, [@andres-rojas][andres-rojas]!
+
+
 ## 1.0.2
 
 **25 December 2014**
@@ -60,3 +71,8 @@ Enhancements:
 [#1]: https://github.com/WhoopInc/vagrant-s3auth/issues/1
 [#7]: https://github.com/WhoopInc/vagrant-s3auth/issues/7
 [#9]: https://github.com/WhoopInc/vagrant-s3auth/issues/9
+[#11]: https://github.com/WhoopInc/vagrant-s3auth/pull/11
+
+[andres-rojas]: https://github.com/andres-rojas
+
+[vagrant-aws]: https://github.com/mitchellh/vagrant-aws
