@@ -8,4 +8,5 @@ end
 
 group :plugins do
   gemspec
+  gem 'vagrant-aws', git: 'git://github.com/mitchellh/vagrant-aws.git', ref: 'master'
 end
