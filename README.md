@@ -198,6 +198,12 @@ Within your metadata JSON, be sure to use [supported S3 URLs](#s3-urls).
 Note that the metadata itself doesn't need to be hosted on S3. Any metadata that
 points to a supported S3 URL will result in an authenticated request.
 
+**IMPORTANT:** Your metadata *must* be served with `Content-Type: application/json`
+or Vagrant will not recognize it as metadata! Most S3 uploader tools (and most
+webservers) will *not* automatically set the `Content-Type` header when the file
+extension is not `.json`. Consult your tool's documentation for instructions on
+manually setting the content type.
+
 ## Auto-install
 
 The beauty of Vagrant is the magic of "`vagrant up` and done." Making your users
