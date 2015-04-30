@@ -51,13 +51,33 @@ end
 AWS credentials are read from the standard environment variables
 `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
-If you need to obtain credentials from elsewhere, drop a block like the
-following at the top of your Vagrantfile:
+You may find it more convenient to use the
+[centralized credential file][aws-cred-file] to create a credential
+profile. Select the appropriate profile using the `AWS_PROFILE`
+environment variable. For example:
+
+```ini
+# ~/.aws/credentials
+
+[vagrant-s3auth]
+aws_access_key_id = AKIA...
+aws_secret_access_key = ...
+```
 
 ```ruby
-creds = File.read(File.expand_path('~/.company-aws-creds')).lines
-ENV['AWS_ACCESS_KEY_ID']     = creds[0].chomp
-ENV['AWS_SECRET_ACCESS_KEY'] = creds[1].chomp
+# Vagrantfile
+
+ENV['AWS_PROFILE'] = 'vagrant-s3auth'
+
+Vagrant.configure("2") { |config| ... }
+```
+
+Alternatively, you can write some Ruby to set the access key directly:
+
+```ruby
+access_key, secret_key = whizbang_inc_api.fetch_api_creds()
+ENV['AWS_ACCESS_KEY_ID']     = access_key
+ENV['AWS_SECRET_ACCESS_KEY'] = secret_key
 ```
 
 ##### IAM configuration
@@ -223,6 +243,7 @@ end
 ```
 
 [aws-403-404]: https://forums.aws.amazon.com/thread.jspa?threadID=56531#jive-message-210346
+[aws-cred-file]: http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs
 [aws-s3-iam]: http://blogs.aws.amazon.com/security/post/Tx3VRSWZ6B3SHAV/Writing-IAM-Policies-How-to-grant-access-to-an-Amazon-S3-bucket
 [aws-signed]: http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html#ConstructingTheAuthenticationHeader
 [aws-user-policy]: http://docs.aws.amazon.com/AmazonS3/latest/dev/example-policies-s3.html

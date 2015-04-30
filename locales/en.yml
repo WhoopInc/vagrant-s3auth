@@ -2,13 +2,19 @@ en:
   vagrant_s3auth:
     errors:
       missing_credentials: |-
-        Unable to read AWS credentials from the environment.
+        Unable to find AWS credentials.
 
         Ensure the following variables are set in your environment, or set
         them at the top of your Vagrantfile:
 
             AWS_ACCESS_KEY_ID
             AWS_SECRET_ACCESS_KEY
+
+        Alternatively, you can create a credential profile and set the
+
+            AWS_PROFILE
+
+        environment variable. Consult the documentation for details.
 
       malformed_shorthand_url: |-
         Malformed shorthand S3 box URL:
