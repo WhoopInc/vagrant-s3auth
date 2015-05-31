@@ -11,7 +11,7 @@ module VagrantPlugins
       DEFAULT_REGION = 'us-east-1'
 
       LOCATION_TO_REGION = Hash.new { |_, key| key }.merge(
-        '' => DEFAULT_REGION
+        '' => DEFAULT_REGION,
         'EU' => 'eu-west-1'
       )
 
@@ -47,7 +47,7 @@ module VagrantPlugins
       end
 
       def self.s3_url_for(method, s3_object)
-        s3_object.presigned_url(method, expires_in: 10)
+        s3_object.presigned_url(method, expires_in: 60 * 10)
       end
 
       def self.get_bucket_region(bucket)

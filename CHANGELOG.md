@@ -7,7 +7,11 @@ Enhancements:
 * upgrade to AWS SDK v2 (no user-facing changes)
 * recommend the use of the AWS SDK's centralized credential file [#14]
 
-Thanks, [@kimpepper][kimpepper]!
+Fixes:
+
+* allow up to ten minutes of time skew ([#16])
+
+Thanks, [@kimpepper][kimpepper] and [@companykitchen-dev][companykitchen-dev]!
 
 ## 1.0.3
 
@@ -84,8 +88,10 @@ Enhancements:
 [#9]: https://github.com/WhoopInc/vagrant-s3auth/issues/9
 [#11]: https://github.com/WhoopInc/vagrant-s3auth/pull/11
 [#14]: https://github.com/WhoopInc/vagrant-s3auth/issues/14
+[#16]: https://github.com/WhoopInc/vagrant-s3auth/issues/16
 
 [andres-rojas]: https://github.com/andres-rojas
+[companykitchen-dev]: https://github.com/companykitchen-dev
 [kimpepper]: https://github.com/kimpepper
 
 [vagrant-aws]: https://github.com/mitchellh/vagrant-aws
