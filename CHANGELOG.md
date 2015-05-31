@@ -4,6 +4,7 @@
 
 Enhancements:
 
+* upgrade to AWS SDK v2 (no user-facing changes)
 * recommend the use of the AWS SDK's centralized credential file [#14]
 
 Thanks, [@kimpepper][kimpepper]!

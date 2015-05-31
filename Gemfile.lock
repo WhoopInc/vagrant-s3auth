@@ -8,16 +8,16 @@ GIT
 
 GIT
   remote: git://github.com/mitchellh/vagrant.git
-  revision: 686e940a8474a8733be40b32e5d9107d557c627b
+  revision: e9b11b4ee4172dfaeca98492f5055d46d679ccd6
   ref: master
   specs:
-    vagrant (1.7.2.dev)
+    vagrant (1.7.2)
       bundler (>= 1.5.2, < 1.8.0)
       childprocess (~> 0.5.0)
       erubis (~> 2.7.0)
       hashicorp-checkpoint (~> 0.1.1)
-      i18n (~> 0.6.0)
-      listen (~> 2.7.11)
+      i18n (>= 0.6.0, <= 0.8.0)
+      listen (~> 2.8.0)
       log4r (~> 1.1.9, < 1.1.11)
       net-scp (~> 1.1.0)
       net-sftp (~> 2.1)
@@ -26,46 +26,52 @@ GIT
       rb-kqueue (~> 0.2.0)
       rest-client (>= 1.6.0, < 2.0)
       wdm (~> 0.1.0)
-      winrm (~> 1.1.3)
+      winrm (~> 1.3)
+      winrm-fs (~> 0.2.0)
 
 PATH
   remote: .
   specs:
     vagrant-s3auth (1.0.3)
-      aws-sdk (~> 1.59.1)
+      aws-sdk (~> 2.0.38)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (2.3.0)
-    akami (1.2.2)
-      gyoku (>= 0.4.0)
-      nokogiri
+    CFPropertyList (2.3.1)
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    aws-sdk (1.59.1)
-      aws-sdk-v1 (= 1.59.1)
-    aws-sdk-v1 (1.59.1)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
+    aws-sdk (2.0.47)
+      aws-sdk-resources (= 2.0.47)
+    aws-sdk-core (2.0.47)
+      builder (~> 3.0)
+      jmespath (~> 1.0)
+      multi_json (~> 1.0)
+    aws-sdk-resources (2.0.47)
+      aws-sdk-core (= 2.0.47)
     builder (3.2.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    childprocess (0.5.5)
+    childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    excon (0.44.4)
-    ffi (1.9.6)
+    excon (0.45.3)
+    ffi (1.9.8)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.28.0)
+    fog (1.30.0)
       fog-atmos
       fog-aws (~> 0.0)
       fog-brightbox (~> 0.4)
-      fog-core (~> 1.27, >= 1.27.3)
+      fog-core (~> 1.27, >= 1.27.4)
       fog-ecloud
+      fog-google (>= 0.0.2)
       fog-json
+      fog-local
+      fog-powerdns (>= 0.1.1)
       fog-profitbricks
       fog-radosgw (>= 0.0.2)
       fog-riakcs
@@ -82,7 +88,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.1.1)
+    fog-aws (0.4.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -91,23 +97,34 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.29.0)
+    fog-core (1.30.0)
       builder
-      excon (~> 0.38)
+      excon (~> 0.45)
       formatador (~> 0.2)
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-    fog-ecloud (0.0.2)
+    fog-ecloud (0.1.1)
       fog-core
       fog-xml
-    fog-json (1.0.0)
-      multi_json (~> 1.0)
-    fog-profitbricks (0.0.1)
+    fog-google (0.0.5)
+      fog-core
+      fog-json
+      fog-xml
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-local (0.2.1)
+      fog-core (~> 1.27)
+    fog-powerdns (0.1.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+    fog-profitbricks (0.0.2)
       fog-core
       fog-xml
       nokogiri
-    fog-radosgw (0.0.3)
+    fog-radosgw (0.0.4)
       fog-core (>= 1.21.0)
       fog-json
       fog-xml (>= 0.0.1)
@@ -115,48 +132,49 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.0.0)
+    fog-sakuracloud (1.0.1)
       fog-core
       fog-json
-    fog-serverlove (0.1.1)
+    fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (0.4.1)
+    fog-softlayer (0.4.6)
       fog-core
       fog-json
-    fog-storm_on_demand (0.1.0)
+    fog-storm_on_demand (0.1.1)
       fog-core
       fog-json
-    fog-terremark (0.0.4)
+    fog-terremark (0.1.0)
       fog-core
       fog-xml
-    fog-vmfusion (0.0.1)
+    fog-vmfusion (0.1.0)
       fission
       fog-core
-    fog-voxel (0.0.2)
+    fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-xml (0.1.1)
+    fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    gssapi (1.0.3)
+    gssapi (1.2.0)
       ffi (>= 1.0.1)
-    gyoku (1.2.2)
+    gyoku (1.3.1)
       builder (>= 2.1.2)
     hashicorp-checkpoint (0.1.4)
     hitimes (1.2.2)
-    http (0.6.3)
+    http (0.6.4)
       http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     http_parser.rb (0.6.0)
-    httpclient (2.5.3.3)
-    httpi (0.9.7)
-      rack
-    i18n (0.6.11)
+    httpclient (2.6.0.1)
+    i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
-    json (1.8.1)
-    listen (2.7.12)
+    jmespath (1.0.2)
+      multi_json (~> 1.0)
+    listen (2.8.6)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -165,31 +183,30 @@ GEM
     logging (1.8.2)
       little-plugger (>= 1.1.3)
       multi_json (>= 1.8.4)
-    mime-types (2.4.3)
+    mime-types (2.6.1)
     mini_portile (0.6.0)
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
-    netrc (0.10.1)
+    net-ssh (2.9.2)
+    netrc (0.10.3)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
-    nori (1.1.5)
-    parser (2.2.0.pre.8)
+    nori (2.6.0)
+    parser (2.2.2.5)
       ast (>= 1.1, < 3.0)
-      slop (~> 3.4, >= 3.4.5)
     powerpack (0.0.9)
-    rack (1.5.2)
     rainbow (2.0.0)
     rake (10.3.2)
-    rb-fsevent (0.9.4)
+    rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    rb-kqueue (0.2.3)
+    rb-kqueue (0.2.4)
       ffi (>= 0.5.0)
-    rest-client (1.7.2)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     rubocop (0.28.0)
@@ -198,31 +215,30 @@ GEM
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
-    ruby-progressbar (1.7.0)
-    rubyntlm (0.1.1)
-    savon (0.9.5)
-      akami (~> 1.0)
-      builder (>= 2.1.2)
-      gyoku (>= 0.4.0)
-      httpi (~> 0.9)
-      nokogiri (>= 1.4.0)
-      nori (~> 1.0)
-      wasabi (~> 1.0)
-    slop (3.6.0)
+    ruby-progressbar (1.7.5)
+    rubyntlm (0.4.0)
+    rubyzip (1.1.7)
     timers (4.0.1)
       hitimes
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     uuidtools (2.1.5)
-    wasabi (1.0.0)
-      nokogiri (>= 1.4.0)
     wdm (0.1.0)
-    winrm (1.1.3)
-      gssapi (~> 1.0.0)
+    winrm (1.3.3)
+      builder (>= 2.1.2)
+      gssapi (~> 1.2)
+      gyoku (~> 1.0)
       httpclient (~> 2.2, >= 2.2.0.2)
       logging (~> 1.6, >= 1.6.1)
-      nokogiri (~> 1.5)
-      rubyntlm (~> 0.1.1)
-      savon (= 0.9.5)
+      nori (~> 2.0)
+      rubyntlm (~> 0.4.0)
       uuidtools (~> 2.1.2)
+    winrm-fs (0.2.0)
+      erubis (~> 2.7)
+      logging (~> 1.6, >= 1.6.1)
+      rubyzip (~> 1.1)
+      winrm (~> 1.3.0)
 
 PLATFORMS
   ruby

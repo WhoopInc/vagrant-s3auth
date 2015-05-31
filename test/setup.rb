@@ -1,29 +1,31 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'aws'
+require 'aws-sdk'
 
 require_relative 'support'
 
 ROOT = Pathname.new(File.dirname(__FILE__))
 
-box_urls = [REGION_STANDARD, REGION_NONSTANDARD].map do |region|
-  s3 = AWS::S3.new(region: region)
-  bucket = s3.buckets.create("#{region}.#{BUCKET}")
+box_urls = [REGION_STANDARD, REGION_NONSTANDARD].flat_map do |region|
+  s3 = Aws::S3::Resource.new(region: region)
+  bucket = s3.create_bucket(bucket: "#{region}.#{BUCKET}")
 
-  box = bucket.objects["#{BOX_BASE}.box"]
-  box.write(ROOT + Pathname.new("box/#{BOX_BASE}.box"))
-  box.public_url
+  [BOX_BASE, 'public-' + BOX_BASE].flat_map do |box_name|
+    box = bucket.object("#{box_name}.box")
+    box.upload_file(ROOT + Pathname.new("box/#{box_name}.box"))
+    box.acl.put(acl: 'public-read') if box_name.start_with?('public')
 
-  metadata_string = File.read(ROOT + Pathname.new("box/#{BOX_BASE}")) % {
-    box_url: box.public_url
-  }
+    metadata_string = File.read(ROOT + Pathname.new("box/#{box_name}")) % {
+      box_url: box.public_url
+    }
 
-  metadata = bucket.objects[BOX_BASE]
-  metadata.write(metadata_string, content_type: 'application/json')
-  metadata.acl = :public_read
+    metadata = bucket.object(box_name)
+    metadata.put(body: metadata_string, content_type: 'application/json')
+    metadata.acl.put(acl: 'public-read') if box_name.start_with?('public')
 
-  box.public_url
+    box.public_url
+  end
 end
 
 atlas = Atlas.new(ATLAS_TOKEN, ATLAS_USERNAME)

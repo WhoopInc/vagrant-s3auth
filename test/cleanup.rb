@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'aws'
+require 'aws-sdk'
 
 require_relative 'support'
 
 [REGION_STANDARD, REGION_NONSTANDARD].each do |region|
-  s3 = AWS::S3.new(region: region)
-  bucket = s3.buckets["#{region}.#{BUCKET}"]
+  s3 = Aws::S3::Resource.new(region: region)
+  bucket = s3.bucket("#{region}.#{BUCKET}")
   bucket.delete! if bucket.exists?
 end
 

@@ -35,10 +35,10 @@ module Vagrant
             bucket: s3_object && s3_object.bucket.name)
         end
         raise
-      rescue ::AWS::Errors::MissingCredentialsError
-        raise VagrantPlugins::S3Auth::Errors::MissingCredentialsError
-      rescue ::AWS::Errors::Base => e
-        raise VagrantPlugins::S3Auth::Errors::S3APIError, error: e
+      rescue ::Aws::Errors::MissingCredentialsError
+        raise S3Auth::Errors::MissingCredentialsError
+      rescue ::Aws::Errors::ServiceError => e
+        raise S3Auth::Errors::S3APIError, error: e
       end
 
       alias_method :execute_curl_without_s3, :execute_curl
