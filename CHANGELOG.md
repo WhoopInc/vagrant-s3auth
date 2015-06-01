@@ -4,7 +4,7 @@
 
 Enhancements:
 
-* upgrade to AWS SDK v2 (no user-facing changes)
+* upgrade to AWS SDK v2 ([#15])
 * recommend the use of the AWS SDK's centralized credential file ([#14])
 
 Fixes:
@@ -90,6 +90,7 @@ Enhancements:
 [#10]: https://github.com/WhoopInc/vagrant-s3auth/issues/10
 [#11]: https://github.com/WhoopInc/vagrant-s3auth/pull/11
 [#14]: https://github.com/WhoopInc/vagrant-s3auth/issues/14
+[#15]: https://github.com/WhoopInc/vagrant-s3auth/issues/15
 [#16]: https://github.com/WhoopInc/vagrant-s3auth/issues/16
 
 [andres-rojas]: https://github.com/andres-rojas
