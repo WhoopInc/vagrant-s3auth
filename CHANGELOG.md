@@ -5,7 +5,7 @@
 Enhancements:
 
 * upgrade to AWS SDK v2 (no user-facing changes)
-* recommend the use of the AWS SDK's centralized credential file [#14]
+* recommend the use of the AWS SDK's centralized credential file ([#14])
 
 Fixes:
 
@@ -20,7 +20,7 @@ Thanks, [@kimpepper][kimpepper] and [@companykitchen-dev][companykitchen-dev]!
 
 Fixes:
 
-* fix namespace collisions with [vagrant-aws][vagrant-aws] [#11]
+* fix namespace collisions with [vagrant-aws][vagrant-aws] ([#11])
 
 Thanks, [@andres-rojas][andres-rojas]!
 
@@ -31,7 +31,7 @@ Thanks, [@andres-rojas][andres-rojas]!
 
 Enhancements:
 
-* provide better error messages when S3 API requests are denied [#9]
+* provide better error messages when S3 API requests are denied ([#9])
 * include IAM policy recommendations in README
 
 ## 1.0.1
