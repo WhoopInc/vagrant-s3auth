@@ -10,6 +10,7 @@ Enhancements:
 Fixes:
 
 * allow up to ten minutes of time skew ([#16])
+* try an unauthenticated download before demanding AWS credentials ([#10])
 
 Thanks, [@kimpepper][kimpepper] and [@companykitchen-dev][companykitchen-dev]!
 
@@ -86,6 +87,7 @@ Enhancements:
 [#1]: https://github.com/WhoopInc/vagrant-s3auth/issues/1
 [#7]: https://github.com/WhoopInc/vagrant-s3auth/issues/7
 [#9]: https://github.com/WhoopInc/vagrant-s3auth/issues/9
+[#10]: https://github.com/WhoopInc/vagrant-s3auth/issues/10
 [#11]: https://github.com/WhoopInc/vagrant-s3auth/pull/11
 [#14]: https://github.com/WhoopInc/vagrant-s3auth/issues/14
 [#16]: https://github.com/WhoopInc/vagrant-s3auth/issues/16

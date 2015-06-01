@@ -23,7 +23,9 @@ fi
 
 teardown() {
   bundle exec vagrant box remove "$VAGRANT_S3AUTH_BOX_BASE" > /dev/null 2>&1 || true
+  bundle exec vagrant box remove "public-$VAGRANT_S3AUTH_BOX_BASE" > /dev/null 2>&1 || true
   bundle exec vagrant box remove "vagrant-s3auth/$VAGRANT_S3AUTH_BOX_BASE" > /dev/null 2>&1 || true
+  bundle exec vagrant box remove "vagrant-s3auth/public-$VAGRANT_S3AUTH_BOX_BASE" > /dev/null 2>&1 || true
   bundle exec vagrant box remove "$ATLAS_USERNAME/$VAGRANT_S3AUTH_ATLAS_BOX_NAME" > /dev/null 2>&1 || true
 }
 
@@ -35,6 +37,13 @@ teardown() {
   bundle exec vagrant box add \
     --name "$VAGRANT_S3AUTH_BOX_BASE" \
     "https://s3.amazonaws.com/us-east-1.$VAGRANT_S3AUTH_BUCKET/$VAGRANT_S3AUTH_BOX_BASE.box"
+}
+
+@test "public simple box with full path standard url without credentials" {
+  AWS_ACCESS_KEY_ID= \
+    bundle exec vagrant box add \
+    --name "$VAGRANT_S3AUTH_BOX_BASE" \
+    "https://s3.amazonaws.com/us-east-1.$VAGRANT_S3AUTH_BUCKET/public-$VAGRANT_S3AUTH_BOX_BASE.box"
 }
 
 @test "simple box with full host standard url" {
@@ -55,6 +64,13 @@ teardown() {
     "https://s3-$VAGRANT_S3AUTH_REGION_NONSTANDARD.amazonaws.com/$VAGRANT_S3AUTH_REGION_NONSTANDARD.$VAGRANT_S3AUTH_BUCKET/$VAGRANT_S3AUTH_BOX_BASE.box"
 }
 
+@test "public simple box with full path nonstandard url without credentials" {
+  AWS_ACCESS_KEY_ID= \
+    bundle exec vagrant box add \
+    --name "$VAGRANT_S3AUTH_BOX_BASE" \
+    "https://s3-$VAGRANT_S3AUTH_REGION_NONSTANDARD.amazonaws.com/$VAGRANT_S3AUTH_REGION_NONSTANDARD.$VAGRANT_S3AUTH_BUCKET/public-$VAGRANT_S3AUTH_BOX_BASE.box"
+}
+
 @test "simple box with full host nonstandard url" {
   bundle exec vagrant box add \
     --name "$VAGRANT_S3AUTH_BOX_BASE" \
@@ -71,6 +87,13 @@ teardown() {
   bundle exec vagrant box add \
     --name "vagrant-s3auth/$VAGRANT_S3AUTH_BOX_BASE" \
     "https://s3.amazonaws.com/us-east-1.$VAGRANT_S3AUTH_BUCKET/$VAGRANT_S3AUTH_BOX_BASE"
+}
+
+@test "public metadata box with full path standard url without credentials" {
+  AWS_ACCESS_KEY_ID= \
+    bundle exec vagrant box add \
+    --name "vagrant-s3auth/public-$VAGRANT_S3AUTH_BOX_BASE" \
+    "https://s3.amazonaws.com/us-east-1.$VAGRANT_S3AUTH_BUCKET/public-$VAGRANT_S3AUTH_BOX_BASE"
 }
 
 @test "metadata box with full host standard url" {
@@ -90,6 +113,14 @@ teardown() {
     --name "vagrant-s3auth/$VAGRANT_S3AUTH_BOX_BASE" \
     "https://s3-$VAGRANT_S3AUTH_REGION_NONSTANDARD.amazonaws.com/$VAGRANT_S3AUTH_REGION_NONSTANDARD.$VAGRANT_S3AUTH_BUCKET/$VAGRANT_S3AUTH_BOX_BASE"
 }
+
+@test "public metadata box with full path nonstandard url without credentials" {
+  AWS_ACCESS_KEY_ID= \
+    bundle exec vagrant box add \
+    --name "vagrant-s3auth/public-$VAGRANT_S3AUTH_BOX_BASE" \
+    "https://s3-$VAGRANT_S3AUTH_REGION_NONSTANDARD.amazonaws.com/$VAGRANT_S3AUTH_REGION_NONSTANDARD.$VAGRANT_S3AUTH_BUCKET/public-$VAGRANT_S3AUTH_BOX_BASE"
+}
+
 
 @test "metadata box with full host nonstandard url" {
   bundle exec vagrant box add \
