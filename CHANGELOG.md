@@ -1,6 +1,6 @@
-## Unreleased
+## 1.1.0
 
-**Unknown**
+**1 June 2015**
 
 Enhancements:
 
