@@ -1,3 +1,12 @@
+## 1.1.1
+
+**6 August 2015**
+
+Enhancements:
+
+* bump dependencies to latest patch versions and dev dependencies to latest
+  versions
+
 ## 1.1.0
 
 **1 June 2015**
