@@ -1,3 +1,14 @@
+## Unreleased
+
+**20 August 2015**
+
+Enhancements:
+
+* output the discovered AWS access key and its source (environment variable or
+  profile) when downloading an authenticated S3 box ([#21])
+
+Thanks, [@Daemoen][Daemoen]!
+
 ## 1.1.1
 
 **6 August 2015**
@@ -101,7 +112,9 @@ Enhancements:
 [#14]: https://github.com/WhoopInc/vagrant-s3auth/issues/14
 [#15]: https://github.com/WhoopInc/vagrant-s3auth/issues/15
 [#16]: https://github.com/WhoopInc/vagrant-s3auth/issues/16
+[#21]: https://github.com/WhoopInc/vagrant-s3auth/issues/21
 
+[Daemoen]: https://github.com/Daemoen
 [andres-rojas]: https://github.com/andres-rojas
 [companykitchen-dev]: https://github.com/companykitchen-dev
 [kimpepper]: https://github.com/kimpepper
