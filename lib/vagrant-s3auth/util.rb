@@ -8,12 +8,26 @@ module VagrantPlugins
     module Util
       S3_HOST_MATCHER = /^((?<bucket>[[:alnum:]\-\.]+).)?s3([[:alnum:]\-\.]+)?\.amazonaws\.com$/
 
+      # The list of environment variables that the AWS Ruby SDK searches
+      # for access keys. Sadly, there's no better way to determine which
+      # environment variable the Ruby SDK is using without mirroring the
+      # logic ourself.
+      #
+      # See: https://github.com/aws/aws-sdk-ruby/blob/ab0eb18d0ce0a515254e207dae772864c34b048d/aws-sdk-core/lib/aws-sdk-core/credential_provider_chain.rb#L42
+      AWS_ACCESS_KEY_ENV_VARS = %w(AWS_ACCESS_KEY_ID AMAZON_ACCESS_KEY_ID AWS_ACCESS_KEY)
+
       DEFAULT_REGION = 'us-east-1'
 
       LOCATION_TO_REGION = Hash.new { |_, key| key }.merge(
         '' => DEFAULT_REGION,
         'EU' => 'eu-west-1'
       )
+
+      class NullObject
+        def method_missing(*)
+          nil
+        end
+      end
 
       def self.s3_client(region = DEFAULT_REGION)
         ::Aws::S3::Client.new(region: region)
@@ -55,9 +69,14 @@ module VagrantPlugins
           s3_client.get_bucket_location(bucket: bucket).location_constraint
         ]
       rescue ::Aws::S3::Errors::AccessDenied
-        raise Errors::BucketLocationAccessDeniedError,
-          bucket: bucket,
-          access_key: ENV['AWS_ACCESS_KEY_ID']
+        raise Errors::BucketLocationAccessDeniedError, bucket: bucket
+      end
+
+      def self.s3_credential_provider
+        # Providing a NullObject here is the same as instantiating a
+        # client without specifying a credentials config, like we do in
+        # `self.s3_client`.
+        ::Aws::CredentialProviderChain.new(NullObject.new).resolve
       end
     end
   end
