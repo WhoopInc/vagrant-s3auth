@@ -72,6 +72,11 @@ ENV['AWS_PROFILE'] = 'vagrant-s3auth'
 Vagrant.configure("2") { |config| ... }
 ```
 
+***Caution:*** The precedence of the variables should always use the sourced
+environment variables first, even in cases where you have configured a
+credential file as recommended above.  In these cases, you may save yourself
+time and frustration by using the explicit method outlined below.
+
 Alternatively, you can write some Ruby to set the access key directly:
 
 ```ruby
@@ -79,6 +84,12 @@ access_key, secret_key = whizbang_inc_api.fetch_api_creds()
 ENV['AWS_ACCESS_KEY_ID']     = access_key
 ENV['AWS_SECRET_ACCESS_KEY'] = secret_key
 ```
+
+To help ensure the correct variables are being used, the variable source
+will be displayed when running vagrant up.  This should help reduce confusion
+about why you may see authentication errors when you have multiple sets of aws
+credentials.
+
 
 ##### IAM configuration
 
