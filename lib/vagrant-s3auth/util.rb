@@ -40,11 +40,7 @@ module VagrantPlugins
       def self.s3_object_for(url, follow_redirect = true)
         url = URI(url)
 
-        if url.scheme == 's3'
-          bucket = url.host
-          key = url.path[1..-1]
-          raise Errors::MalformedShorthandURLError, url: url unless bucket && key
-        elsif match = S3_HOST_MATCHER.match(url.host)
+        if match = S3_HOST_MATCHER.match(url.host)
           components = url.path.split('/').delete_if(&:empty?)
           bucket = match['bucket'] || components.shift
           key = components.join('/')
