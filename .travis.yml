@@ -41,3 +41,11 @@ env:
   - VAGRANT_VERSION=v1.7.1
   - VAGRANT_VERSION=v1.6.5
   - VAGRANT_VERSION=v1.5.1
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: b7ZiPX6EfA4DNV6B65ZvVJF8Xswne4N0MdIqwTkyQ5//0+3hSHg0ChTvjeb+eeTcPFiYxuh0UvXqJMtxi8hCJub03aJ5qeDDm6FJeM7WqsHmXx6A6UGFxnCTi6z7IaaBCs71jygzdjN6AaKOV9PuvhD079dci/yylr0SDHQgvrY=
+  on:
+    tags: true
+    repo: WhoopInc/vagrant-s3auth
