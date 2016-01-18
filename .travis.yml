@@ -1,17 +1,20 @@
+sudo: false
+
 language: ruby
 rvm:
 - 2.2.3
 
+addons:
+  apt:
+    packages:
+    - bsdtar
+    - libxslt1.1
+
 before_install:
 # Install Bats, the Bash testing framework
-- git clone https://github.com/sstephenson/bats.git
-- (cd bats; sudo ./install.sh /usr/local)
-
-# Vagrant from source doesn't ship with `bsdtar`
-- sudo apt-get install -qy bsdtar
+- npm install bats
 
 # Speed up Nokogiri installation substantially by using precompiled libxslt
-- sudo apt-get install -qy libxslt1.1
 - bundle config build.nokogiri --use-system-libraries
 
 # Older versions of Vagrant can't handle the current version of Bundler, which
