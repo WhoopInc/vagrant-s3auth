@@ -15,10 +15,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/spec/)
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'aws-sdk', '~> 2.1.13'
+  spec.add_dependency 'aws-sdk', '~> 2.2.10'
 
   spec.add_development_dependency 'bundler', '~> 1.5'
-  spec.add_development_dependency 'http', '~> 0.9.0'
-  spec.add_development_dependency 'rake', '~> 10.4.2'
-  spec.add_development_dependency 'rubocop', '~> 0.33.0'
+  spec.add_development_dependency 'http', '~> 1.0.2'
+  spec.add_development_dependency 'rake', '~> 10.5.0'
+  spec.add_development_dependency 'rubocop', '~> 0.36.0'
 end
