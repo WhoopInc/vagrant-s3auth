@@ -75,8 +75,8 @@ module Vagrant
         s3auth_download(options, subprocess_options, &data_proc) || (raise e)
       end
 
-      alias_method :execute_curl_without_s3auth, :execute_curl
-      alias_method :execute_curl, :execute_curl_with_s3auth
+      alias execute_curl_without_s3auth execute_curl
+      alias execute_curl execute_curl_with_s3auth
     end
   end
 end

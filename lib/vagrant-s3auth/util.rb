@@ -14,9 +14,9 @@ module VagrantPlugins
       # logic ourself.
       #
       # See: https://github.com/aws/aws-sdk-ruby/blob/ab0eb18d0ce0a515254e207dae772864c34b048d/aws-sdk-core/lib/aws-sdk-core/credential_provider_chain.rb#L42
-      AWS_ACCESS_KEY_ENV_VARS = %w(AWS_ACCESS_KEY_ID AMAZON_ACCESS_KEY_ID AWS_ACCESS_KEY)
+      AWS_ACCESS_KEY_ENV_VARS = %w(AWS_ACCESS_KEY_ID AMAZON_ACCESS_KEY_ID AWS_ACCESS_KEY).freeze
 
-      DEFAULT_REGION = 'us-east-1'
+      DEFAULT_REGION = 'us-east-1'.freeze
 
       LOCATION_TO_REGION = Hash.new { |_, key| key }.merge(
         '' => DEFAULT_REGION,

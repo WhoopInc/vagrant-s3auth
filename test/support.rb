@@ -1,26 +1,26 @@
 require 'http'
 
-BOX_BASE = ENV['VAGRANT_S3AUTH_BOX_BASE']
-BUCKET = ENV['VAGRANT_S3AUTH_BUCKET']
-REGION_STANDARD = 'us-east-1'
-REGION_NONSTANDARD = ENV['VAGRANT_S3AUTH_REGION_NONSTANDARD']
+BOX_BASE = ENV['VAGRANT_S3AUTH_BOX_BASE'].freeze
+BUCKET = ENV['VAGRANT_S3AUTH_BUCKET'].freeze
+REGION_STANDARD = 'us-east-1'.freeze
+REGION_NONSTANDARD = ENV['VAGRANT_S3AUTH_REGION_NONSTANDARD'].freeze
 
-ATLAS_TOKEN = ENV['ATLAS_TOKEN']
-ATLAS_USERNAME = ENV['ATLAS_USERNAME']
-ATLAS_BOX_NAME = ENV['VAGRANT_S3AUTH_ATLAS_BOX_NAME']
+ATLAS_TOKEN = ENV['ATLAS_TOKEN'].freeze
+ATLAS_USERNAME = ENV['ATLAS_USERNAME'].freeze
+ATLAS_BOX_NAME = ENV['VAGRANT_S3AUTH_ATLAS_BOX_NAME'].freeze
 
 class Atlas
-  BASE_URL = 'https://atlas.hashicorp.com/api/v1'
+  BASE_URL = 'https://atlas.hashicorp.com/api/v1'.freeze
 
-  BOX_CREATE_URL = "#{BASE_URL}/boxes"
-  BOX_RESOURCE_URL = "#{BASE_URL}/box/%{username}/%{box_name}"
+  BOX_CREATE_URL = "#{BASE_URL}/boxes".freeze
+  BOX_RESOURCE_URL = "#{BASE_URL}/box/%{username}/%{box_name}".freeze
 
-  VERSION_CREATE_URL = "#{BOX_RESOURCE_URL}/versions"
-  VERSION_RESOURCE_URL = "#{BOX_RESOURCE_URL}/version/%{version}"
-  VERSION_RELEASE_URL = "#{VERSION_RESOURCE_URL}/release"
+  VERSION_CREATE_URL = "#{BOX_RESOURCE_URL}/versions".freeze
+  VERSION_RESOURCE_URL = "#{BOX_RESOURCE_URL}/version/%{version}".freeze
+  VERSION_RELEASE_URL = "#{VERSION_RESOURCE_URL}/release".freeze
 
-  PROVIDER_CREATE_URL = "#{VERSION_RESOURCE_URL}/providers"
-  PROVIDER_RESOURCE_URL = "#{VERSION_RESOURCE_URL}/provider/%{provider_name}"
+  PROVIDER_CREATE_URL = "#{VERSION_RESOURCE_URL}/providers".freeze
+  PROVIDER_RESOURCE_URL = "#{VERSION_RESOURCE_URL}/provider/%{provider_name}".freeze
 
   attr_accessor :provider
 
