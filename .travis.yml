@@ -20,10 +20,6 @@ before_install:
 - gem install bundler -v '~> 1.5.2'
 - bundle --version
 
-# Allow dynamically changing the bundled Vagrant version via environment
-# variables.
-- rm Gemfile.lock
-
 before_script:
 - test/setup.rb
 
