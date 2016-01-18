@@ -17,6 +17,11 @@ module VagrantPlugins
       description <<-DESC
         Use versioned Vagrant boxes with S3 authentication.
       DESC
+
+      action_hook(:s3_urls, :authenticate_box_url) do |hook|
+        require_relative 'middleware/expand_s3_urls'
+        hook.prepend(ExpandS3Urls)
+      end
     end
   end
 end
