@@ -3,3 +3,4 @@
 pkg
 *.gem
 .env
+Gemfile.lock

@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.1
+- 2.2.3
 
 before_install:
 # Install Bats, the Bash testing framework
@@ -20,10 +20,6 @@ before_install:
 - gem install bundler -v '~> 1.5.2'
 - bundle --version
 
-# Allow dynamically changing the bundled Vagrant version via environment
-# variables.
-- rm Gemfile.lock
-
 before_script:
 - test/setup.rb
 
@@ -38,6 +34,7 @@ env:
   - VAGRANT_S3AUTH_BOX_BASE=minimal
   matrix:
   - VAGRANT_VERSION=master
-  - VAGRANT_VERSION=v1.7.1
+  - VAGRANT_VERSION=v1.8.1
+  - VAGRANT_VERSION=v1.7.4
   - VAGRANT_VERSION=v1.6.5
   - VAGRANT_VERSION=v1.5.1
