@@ -57,6 +57,13 @@ module Vagrant
         raise S3Auth::Errors::MissingCredentialsError
       rescue ::Aws::Errors::ServiceError => e
         raise S3Auth::Errors::S3APIError, error: e
+      rescue ::Seahorse::Client::NetworkingError => e
+        # Vagrant ignores download errors during e.g. box update checks
+        # because an internet connection isn't necessary if the box is
+        # already downloaded. Vagrant isn't expecting AWS's
+        # Seahorse::Client::NetworkingError, so we cast it to the
+        # DownloaderError Vagrant expects.
+        raise Errors::DownloaderError, message: e
       end
 
       def execute_curl_with_s3auth(options, subprocess_options, &data_proc)
