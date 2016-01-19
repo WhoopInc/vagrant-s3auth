@@ -1,3 +1,16 @@
+## 1.3.0
+
+**18 January 2016**
+
+Enhancements:
+
+* upgrade to AWS SDK v2.2.10
+
+Fixes:
+
+* allow box update checks when offline ([#26])
+* support the Vagrant 1.8.x series ([#27])
+
 ## 1.2.0
 
 **20 August 2015**
