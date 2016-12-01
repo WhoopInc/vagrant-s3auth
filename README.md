@@ -240,7 +240,7 @@ install a plugin is lame.
 But wait! Just stick some shell in your Vagrantfile:
 
 ```ruby
-unless Vagrant.has_plugin?('vagrant-s3auth')
+unless Vagrant.has_plugin?('vagrant-s3auth') || ARGV.include?("plugin")
   # Attempt to install ourself. Bail out on failure so we don't get stuck in an
   # infinite loop.
   system('vagrant plugin install vagrant-s3auth') || exit!
@@ -249,6 +249,11 @@ unless Vagrant.has_plugin?('vagrant-s3auth')
   exit system('vagrant', *ARGV)
 end
 ```
+
+**Warning:** the above code is brittle. Prior versions of the above code were
+incompatible with Vagrant 1.9 and caused a hard-to-debug failure. Follow
+mitchellh/vagrant#8055 to watch the development of an officially-supported
+mechanism to request plugin installation.
 
 [aws-403-404]: https://forums.aws.amazon.com/thread.jspa?threadID=56531#jive-message-210346
 [aws-cred-file]: http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs
