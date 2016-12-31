@@ -15,12 +15,14 @@ module Vagrant
           I18n.t(
             'vagrant_s3auth.downloader.env_credential_provider',
             access_key: credential_provider.credentials.access_key_id,
-            env_var: S3Auth::Util::AWS_ACCESS_KEY_ENV_VARS.find { |k| ENV.key?(k) })
+            env_var: S3Auth::Util::AWS_ACCESS_KEY_ENV_VARS.find { |k| ENV.key?(k) }
+          )
         when ::Aws::SharedCredentials
           I18n.t(
             'vagrant_s3auth.downloader.profile_credential_provider',
             access_key: credential_provider.credentials.access_key_id,
-            profile: credential_provider.profile_name)
+            profile: credential_provider.profile_name
+          )
         end
       end
 

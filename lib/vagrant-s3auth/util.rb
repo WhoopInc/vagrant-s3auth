@@ -24,7 +24,7 @@ module VagrantPlugins
       )
 
       class NullObject
-        def method_missing(*)
+        def method_missing(*) # rubocop:disable Style/MethodMissing
           nil
         end
       end
