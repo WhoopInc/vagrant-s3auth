@@ -1,3 +1,11 @@
+## 1.3.1
+
+**30 December 2016**
+
+Fixes:
+
+* suppress warning about invalid region with certain buckets ([#31])
+
 ## 1.3.0
 
 **18 January 2016**
@@ -126,6 +134,9 @@ Enhancements:
 [#15]: https://github.com/WhoopInc/vagrant-s3auth/issues/15
 [#16]: https://github.com/WhoopInc/vagrant-s3auth/issues/16
 [#21]: https://github.com/WhoopInc/vagrant-s3auth/issues/21
+[#26]: https://github.com/WhoopInc/vagrant-s3auth/issues/26
+[#27]: https://github.com/WhoopInc/vagrant-s3auth/issues/27
+[#31]: https://github.com/WhoopInc/vagrant-s3auth/issues/31
 
 [Daemoen]: https://github.com/Daemoen
 [andres-rojas]: https://github.com/andres-rojas
