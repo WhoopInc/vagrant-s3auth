@@ -30,7 +30,10 @@ module VagrantPlugins
       end
 
       def self.s3_client(region = DEFAULT_REGION)
-        ::Aws::S3::Client.new(region: region)
+        # Workaround for aws/aws-sdk-ruby#1374. `get_bucket_location`
+        # causes an incorrect region warning to be printed unless
+        # path-style requests are forced.
+        ::Aws::S3::Client.new(region: region, force_path_style: true)
       end
 
       def self.s3_resource(region = DEFAULT_REGION)
