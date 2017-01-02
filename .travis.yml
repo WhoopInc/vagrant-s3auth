@@ -19,8 +19,12 @@ before_install:
 
 # Older versions of Vagrant can't handle the current version of Bundler, which
 # ships with Travis.
-- rvm @default,@global do gem uninstall bundler --all --executables
-- gem install bundler -v '~> 1.5.2'
+- |
+  if [[ "$BUNDLER_VERSION" ]]
+  then
+    rvm @default,@global do gem uninstall bundler --all --executables
+    gem install bundler -v "$BUNDLER_VERSION"
+  fi
 - bundle --version
 
 before_script:
@@ -36,12 +40,12 @@ env:
   - VAGRANT_S3AUTH_REGION_NONSTANDARD=eu-west-1
   - VAGRANT_S3AUTH_BOX_BASE=minimal
   matrix:
-  - VAGRANT_VERSION=master
-  - VAGRANT_VERSION=v1.9.1
-  - VAGRANT_VERSION=v1.8.7
-  - VAGRANT_VERSION=v1.7.4
-  - VAGRANT_VERSION=v1.6.5
-  - VAGRANT_VERSION=v1.5.1
+  - VAGRANT_VERSION=master BUNDLER_VERSION=
+  - VAGRANT_VERSION=v1.9.1 BUNDLER_VERSION=
+  - VAGRANT_VERSION=v1.8.7 BUNDLER_VERSION=1.12.5
+  - VAGRANT_VERSION=v1.7.4 BUNDLER_VERSION=1.10.5
+  - VAGRANT_VERSION=v1.6.5 BUNDLER_VERSION=1.6.9
+  - VAGRANT_VERSION=v1.5.1 BUNDLER_VERSION=1.5.3
 
 deploy:
   provider: rubygems
