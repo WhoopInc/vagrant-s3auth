@@ -12,4 +12,4 @@ task :test do
   sh 'bats test/run.bats'
 end
 
-task default: %w(lint test)
+task default: %w[lint test]
