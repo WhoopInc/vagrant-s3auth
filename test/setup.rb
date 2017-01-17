@@ -16,9 +16,8 @@ box_urls = [REGION_STANDARD, REGION_NONSTANDARD].flat_map do |region|
     box.upload_file(ROOT + Pathname.new("box/#{box_name}.box"))
     box.acl.put(acl: 'public-read') if box_name.start_with?('public')
 
-    metadata_string = File.read(ROOT + Pathname.new("box/#{box_name}")) % {
-      box_url: box.public_url
-    }
+    metadata_string = format(File.read(ROOT + Pathname.new("box/#{box_name}")),
+      box_url: box.public_url)
 
     metadata = bucket.object(box_name)
     metadata.put(body: metadata_string, content_type: 'application/json')
