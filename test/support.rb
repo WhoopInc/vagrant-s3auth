@@ -13,14 +13,14 @@ class Atlas
   BASE_URL = 'https://atlas.hashicorp.com/api/v1'.freeze
 
   BOX_CREATE_URL = "#{BASE_URL}/boxes".freeze
-  BOX_RESOURCE_URL = "#{BASE_URL}/box/%{username}/%{box_name}".freeze
+  BOX_RESOURCE_URL = "#{BASE_URL}/box/%<username>s/%<box_name>s".freeze
 
   VERSION_CREATE_URL = "#{BOX_RESOURCE_URL}/versions".freeze
-  VERSION_RESOURCE_URL = "#{BOX_RESOURCE_URL}/version/%{version}".freeze
+  VERSION_RESOURCE_URL = "#{BOX_RESOURCE_URL}/version/%<version>s".freeze
   VERSION_RELEASE_URL = "#{VERSION_RESOURCE_URL}/release".freeze
 
   PROVIDER_CREATE_URL = "#{VERSION_RESOURCE_URL}/providers".freeze
-  PROVIDER_RESOURCE_URL = "#{VERSION_RESOURCE_URL}/provider/%{provider_name}".freeze
+  PROVIDER_RESOURCE_URL = "#{VERSION_RESOURCE_URL}/provider/%<provider_name>s".freeze
 
   attr_accessor :provider
 
