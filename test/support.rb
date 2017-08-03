@@ -10,7 +10,7 @@ ATLAS_USERNAME = ENV['ATLAS_USERNAME'].freeze
 ATLAS_BOX_NAME = ENV['VAGRANT_S3AUTH_ATLAS_BOX_NAME'].freeze
 
 class Atlas
-  BASE_URL = 'https://atlas.hashicorp.com/api/v1'.freeze
+  BASE_URL = 'https://app.vagrantup.com/api/v1'.freeze
 
   BOX_CREATE_URL = "#{BASE_URL}/boxes".freeze
   BOX_RESOURCE_URL = "#{BASE_URL}/box/%<username>s/%<box_name>s".freeze
@@ -61,9 +61,10 @@ class Atlas
 
   def request(method, url, options)
     url_params = (options[:url_params] || {}).merge(username: @username)
-    data = (options[:data] || {}).merge(access_token: @token)
+    data = (options[:data] || {})
 
-    response = HTTP.request(method, url % url_params, json: data)
+    url = (url % url_params) + "?access_token=#{@token}"
+    response = HTTP.request(method, url, json: data)
     raise response unless response.code >= 200 && response.code < 400
   end
 
