@@ -43,7 +43,11 @@ module Vagrant
 
         @logger.info("s3auth: Generating signed URL for #{method.upcase}")
 
-        @ui.detail(s3auth_credential_source) if @ui
+        begin
+          @ui.detail(s3auth_credential_source) if @ui
+        rescue => e
+          @logger.debug("s3auth: unable to get credential source")
+        end
 
         url.replace(S3Auth::Util.s3_url_for(method, s3_object).to_s)
 
