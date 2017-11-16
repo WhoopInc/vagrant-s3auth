@@ -1,8 +1,6 @@
 sudo: false
 
 language: ruby
-rvm:
-- 2.2.3
 
 addons:
   apt:
@@ -18,10 +16,16 @@ before_install:
 - bundle config build.nokogiri --use-system-libraries
 
 # Older versions of Vagrant can't handle the current version of Bundler, which
-# ships with Travis.
+# ships with Travis. This also requires an older version of RVM; see
+# https://github.com/travis-ci/travis-ci/issues/8717.
 - |
   if [[ "$BUNDLER_VERSION" ]]
   then
+    set -e
+    rvm implode --force
+    curl -fsSL https://get.rvm.io | bash -s 1.27.0
+    rvm reload
+    rvm install 2.2.3
     rvm @default,@global do gem uninstall bundler --all --executables
     gem install bundler -v "$BUNDLER_VERSION"
   fi
@@ -41,7 +45,8 @@ env:
   - VAGRANT_S3AUTH_BOX_BASE=minimal
   matrix:
   - VAGRANT_VERSION=master BUNDLER_VERSION=
-  - VAGRANT_VERSION=v1.9.1 BUNDLER_VERSION=
+  - VAGRANT_VERSION=v2.0.1 BUNDLER_VERSION=
+  - VAGRANT_VERSION=v1.9.8 BUNDLER_VERSION=
   - VAGRANT_VERSION=v1.8.7 BUNDLER_VERSION=1.12.5
   - VAGRANT_VERSION=v1.7.4 BUNDLER_VERSION=1.10.5
   - VAGRANT_VERSION=v1.6.5 BUNDLER_VERSION=1.6.9
