@@ -2,6 +2,7 @@ require 'aws-sdk'
 require 'log4r'
 require 'net/http'
 require 'uri'
+require 'aws_config'
 
 module VagrantPlugins
   module S3Auth
@@ -30,6 +31,10 @@ module VagrantPlugins
       end
 
       def self.s3_client(region = DEFAULT_REGION)
+        unless ENV['AWS_CONFIG_PROFILE'].nil?
+          config = AWSConfig[ENV['AWS_CONFIG_PROFILE']]
+          set_credentials_from_profile(config) if ::Aws.config.empty?
+        end
         ::Aws::S3::Client.new(region: region)
       end
 
@@ -76,7 +81,48 @@ module VagrantPlugins
         # Providing a NullObject here is the same as instantiating a
         # client without specifying a credentials config, like we do in
         # `self.s3_client`.
-        ::Aws::CredentialProviderChain.new(NullObject.new).resolve
+          unless ENV['AWS_CONFIG_PROFILE'].nil?
+            ENV['AWS_CONFIG_PROFILE']
+          else
+            ::Aws::CredentialProviderChain.new(NullObject.new).resolve
+          end
+      end
+
+      def self.set_credentials_from_profile(region = DEFAULT_REGION, config)
+        creds = ::Aws::Credentials.new(
+          config.aws_access_key_id,
+          config.aws_secret_access_key
+        )
+        sts_client = ::Aws::STS::Client.new(
+          credentials: creds 
+        )
+        if config.respond_to?(:mfa_serial)
+          print 'Enter AWS MFA token: '
+          token_code = STDIN.noecho(&:gets).chomp
+          creds = sts_client.get_session_token(
+            duration_seconds: 900,
+            serial_number: config.mfa_serial,
+            token_code: token_code
+          )
+          sts_client = ::Aws::STS::Client.new(
+            access_key_id: creds.credentials.access_key_id,
+            secret_access_key: creds.credentials.secret_access_key,
+            session_token: creds.credentials.session_token
+          )
+        end
+        if config.respond_to?(:role_arn)
+        creds = ::Aws::AssumeRoleCredentials.new(
+          client: sts_client,
+          role_arn: config.role_arn,
+          role_session_name: "#{ENV['USER']}-#{Time.now.utc.iso8601.tr!('-:', '_')}"
+        )
+        end
+        ::Aws.config.update(
+          region: config.region,
+          credentials: creds
+        )
+      rescue StandardError => e
+          raise Errors::SetCredentialsFromProfileError, profile: config.name, error: e
       end
     end
   end
