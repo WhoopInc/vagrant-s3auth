@@ -88,6 +88,30 @@ profile file) will be displayed when the box is downloaded. If you use
 multiple AWS credentials and see authentication errors, verify that the
 correct access key was detected.
 
+##### AWS credentials using ~/.aws/config profiles
+
+Using this feature adds support for assuming an IAM Role and MFA authentication.
+
+```ini
+# ~/.aws/config
+
+[profile role-to-assume]
+ region = eu-west-1
+ source_profile = vagrant-s3auth
+ role_arn = arn:aws:iam::12345678900:role/role-to-assume
+ mfa_serial = arn:aws:iam::12345678900:mfa/user
+```
+
+```ruby
+# Vagrantfile
+
+ENV.delete_if { |name| name.start_with?('AWS_') }  # Filter out rogue env vars.
+ENV['AWS_REGION'] = 'eu-west-1'
+ENV['AWS_CONFIG_PROFILE'] = 'role-to-assume'
+
+Vagrant.configure("2") { |config| ... }
+```
+
 ##### IAM configuration
 
 IAM accounts will need at least the following policy:

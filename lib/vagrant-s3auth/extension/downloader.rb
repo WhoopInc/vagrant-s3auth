@@ -23,6 +23,11 @@ module Vagrant
             access_key: credential_provider.credentials.access_key_id,
             profile: credential_provider.profile_name
           )
+        when String
+          I18n.t(
+            'vagrant_s3auth.downloader.profile_credential_config',
+            profile: credential_provider
+          )
         end
       end
 
