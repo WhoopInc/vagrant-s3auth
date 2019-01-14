@@ -1,3 +1,12 @@
+## 1.4.0
+
+**14 January 2018**
+
+Features:
+
+* Added support for MFA and Assume Role
+
+
 ## 1.3.2
 
 **6 January 2016**
