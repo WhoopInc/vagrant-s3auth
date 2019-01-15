@@ -1,5 +1,5 @@
 {
-  "name": "vagrant-s3auth/minimal",
+  "name": "vagrant-s3auth-mfa/minimal",
   "description": "This box contains company secrets.",
   "versions": [{
     "version": "1.0.1",

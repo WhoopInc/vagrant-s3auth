@@ -1,7 +1,7 @@
 require 'uri'
 
 require 'vagrant/util/downloader'
-require 'vagrant-s3auth/util'
+require 'vagrant-s3auth-mfa/util'
 
 S3Auth = VagrantPlugins::S3Auth
 

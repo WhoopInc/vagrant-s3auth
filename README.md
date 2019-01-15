@@ -1,4 +1,4 @@
-# vagrant-s3auth
+# vagrant-s3auth-mfa
 
 <a href="https://travis-ci.org/WhoopInc/vagrant-s3auth">
   <img src="https://travis-ci.org/WhoopInc/vagrant-s3auth.svg?branch=master"
@@ -12,7 +12,7 @@ Private, versioned Vagrant boxes hosted on Amazon S3.
 From the command line:
 
 ```bash
-$ vagrant plugin install vagrant-s3auth
+$ vagrant plugin install vagrant-s3auth-mfa
 ```
 
 ### Requirements
@@ -21,7 +21,7 @@ $ vagrant plugin install vagrant-s3auth
 
 ## Usage
 
-vagrant-s3auth will automatically sign requests for S3 URLs
+vagrant-s3auth-mfa will automatically sign requests for S3 URLs
 
 ```
 s3://bucket.example.com/path/to/metadata
@@ -59,7 +59,7 @@ environment variable. For example:
 ```ini
 # ~/.aws/credentials
 
-[vagrant-s3auth]
+[vagrant-s3auth-mfa]
 aws_access_key_id = AKIA...
 aws_secret_access_key = ...
 ```
@@ -68,7 +68,7 @@ aws_secret_access_key = ...
 # Vagrantfile
 
 ENV.delete_if { |name| name.start_with?('AWS_') }  # Filter out rogue env vars.
-ENV['AWS_PROFILE'] = 'vagrant-s3auth'
+ENV['AWS_PROFILE'] = 'vagrant-s3auth-mfa'
 
 Vagrant.configure("2") { |config| ... }
 ```
@@ -97,7 +97,7 @@ Using this feature adds support for assuming an IAM Role and MFA authentication.
 
 [profile role-to-assume]
  region = eu-west-1
- source_profile = vagrant-s3auth
+ source_profile = vagrant-s3auth-mfa
  role_arn = arn:aws:iam::12345678900:role/role-to-assume
  mfa_serial = arn:aws:iam::12345678900:mfa/user
 ```
@@ -136,7 +136,7 @@ IAM accounts will need at least the following policy:
 
 **IMPORTANT:** You must split up bucket and object permissions into separate policy statements as written above! See [Writing IAM Policies: How to grant access to an Amazon S3 Bucket][aws-s3-iam].
 
-Also note that `s3:ListBucket` permission is not strictly necessary. vagrant-s3auth will never
+Also note that `s3:ListBucket` permission is not strictly necessary. vagrant-s3auth-mfa will never
 make a ListBucket request, but without ListBucket permission, a misspelled box
 name results in a 403 Forbidden error instead of a 404 Not Found error. ([Why?][aws-403-404])
 
@@ -264,10 +264,10 @@ install a plugin is lame.
 But wait! Just stick some shell in your Vagrantfile:
 
 ```ruby
-unless Vagrant.has_plugin?('vagrant-s3auth')
+unless Vagrant.has_plugin?('vagrant-s3auth-mfa')
   # Attempt to install ourself. Bail out on failure so we don't get stuck in an
   # infinite loop.
-  system('vagrant plugin install vagrant-s3auth') || exit!
+  system('vagrant plugin install vagrant-s3auth-mfa') || exit!
 
   # Relaunch Vagrant so the plugin is detected. Exit with the same status code.
   exit system('vagrant', *ARGV)
