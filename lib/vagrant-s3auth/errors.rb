@@ -22,6 +22,10 @@ module VagrantPlugins
       class S3APIError < VagrantS3AuthError
         error_key(:s3_api_error)
       end
+
+      class SetCredentialsFromProfileError < VagrantS3AuthError
+        error_key(:set_credentials_from_profile_error)
+      end
     end
   end
 end

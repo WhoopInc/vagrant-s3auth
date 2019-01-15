@@ -7,6 +7,9 @@ en:
       profile_credential_provider: |-
         Signing S3 request with key '%{access_key}' loaded from profile '%{profile}'
 
+      profile_credential_config: |-
+        Signing S3 request with profile '%{profile}' loaded from ~/.aws/config
+
     errors:
       missing_credentials: |-
         Unable to find AWS credentials.
@@ -51,3 +54,8 @@ en:
             arn:aws:s3:::%{bucket}/*
 
         It may also indicate the box does not exist, so check your spelling.
+      
+      set_credentials_from_profile_error: |-
+        Error while trying to set credententials for profile '%{profile}'
+
+            %{error}
