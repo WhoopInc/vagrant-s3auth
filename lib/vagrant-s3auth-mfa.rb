@@ -1,6 +1,6 @@
 require 'pathname'
 
-require 'vagrant-s3auth/plugin'
+require 'vagrant-s3auth-mfa/plugin'
 
 module VagrantPlugins
   module S3Auth
