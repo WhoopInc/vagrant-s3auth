@@ -1,3 +1,11 @@
+## 1.4.1
+
+**15 January 2018**
+
+Features:
+
+* Rename to vagrant-s3auth-mfa
+
 ## 1.4.0
 
 **14 January 2018**
