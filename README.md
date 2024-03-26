@@ -1,3 +1,6 @@
+## Notice: This repository is no longer maintained as of 3/26/2024
+
+
 # vagrant-s3auth
 
 <a href="https://travis-ci.org/WhoopInc/vagrant-s3auth">
