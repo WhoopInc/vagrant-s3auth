@@ -1,3 +1,11 @@
+## 1.3.3
+
+**3 February 2024**
+
+Enhancements:
+
+* upgrade to AWS SDK v3.2.0
+
 ## 1.3.2
 
 **6 January 2016**
